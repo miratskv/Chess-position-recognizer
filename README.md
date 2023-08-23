@@ -40,7 +40,7 @@ After successful installation (you can use, for example, pip install command), t
 
 Note that if the Stockfish engine is not installed globally, you have to set the correct path to the bin files (see the link in the previous sect.) in the constants.py file.
 
-1. Press the "Select area" button to open a new transparent window. Resize and position this window over the area from which you want to take a screenshot of the chessboard. Edges do not have to be align properly, however too big offsets can downgrade the preformance. However, you can reselect and adjust the selected area whenever you want by pressing the button again.
+1. Press the "Select area" button to open a new transparent window. Resize and position this window over the area from which you want to take a screenshot of the chessboard. Edges do not have to be align properly, however too big offsets can downgrade the preformance. Note that you can reselect and adjust the selected area whenever you want by pressing the button again.
 
 2. Use the auxiliary buttons to select which player is to move and the chessboard perspective. Additionally, select which castling options are still permissible.
 
