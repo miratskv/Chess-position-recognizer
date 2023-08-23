@@ -1,11 +1,11 @@
-##Short description:
+## Short description:
 A simple application designed for recognizing "online" chess positions (i.e., corresponding FEN notation) from a screenshot using a small neural network and predicting next best moves, utilizing Stockfish engine. The package includes: An application script, a script for generating training data and a script training of the mentioned network.
 
-###Disclaimer:
+### Disclaimer:
 The application primarily serves for analyzing live broadcasts and facilitating the easy import of games from videos into an analyzer etc. Secondary purpose is purely educational, as the ability to generate custom data enables easy comparison of the effectiveness of various neural network models, the influence of data augmentation, and similar aspects. Any misuse for cheating during one's own games is immoral and honestly quite stupid.
 
 
-##Motivation:
+## Motivation:
 During the last few years, the popularity of chess has been rapidly increasing. This is accompanied by a growth in online content, whether it's educational videos, game recordings, or live broadcasts of matches at the highest level.
 
 It is evident that modern chess engines far surpass even the most accomplished human players in terms of their performance. These engines have become indispensable tools for not only game analysis but also for evaluating the current state of a chess position, often quantified using metrics like the "Centipawn metric."
@@ -16,7 +16,7 @@ The purpose of this application is thus quite evident: Take a screenshot -> disp
 
 
 
-##Requirements:
+## Requirements:
 
 - **Operating System:** Tested only on a Linux machine (Ubuntu 23.04)
 - **Chess engine:** Stockfish + python stockfish api (see [Stockfish on PyPI](https://pypi.org/project/stockfish/))
@@ -28,7 +28,7 @@ The purpose of this application is thus quite evident: Take a screenshot -> disp
   - opencv-python
   - stockfish
 
-##Manual
+## Manual
 After successful installation (you can use, for example, pip install command), the application itself is launched through the command line using the command "chessrec_app". Optional parameters:
 
   -  &#45;&#45;master_H": Dimension of the app window (def 540)
