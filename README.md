@@ -52,3 +52,33 @@ Note: The FEN notation, of course, isn't complete, as it's impossible to determi
 *Example: GM Daniel Naroditsky ([YouTube Link](https://www.youtube.com/watch?v=bFLEuc7G7YA)) explaining his thought process. On the right side of the image, we see the application: Buttons are set for the perspective of the black player, the black player is to move, and all castling options are permissible. The left board is the screenshot, the right one is the reconstruction based on the neural network recognition (hence the default "white" orientation). As you can see, the position was reconstructed correctly in this case. The position's evaluation is displayed in the text box, and each use of the "Evaluate" button is separated by a horizontal line. We can observe that GM Naroditsky briefly considers the third-best move, knight from D5 to B6. (Spoiler) However, he ultimately decides to play e7 to e6, which, as we can see, is by far the top engine move.*
 
 
+## Code description
+
+### Main directory
+- **constants.py** file with global constants and parameters, such as stockfish path, number of files/ranks, pieces notations etc.
+- **fen_transcode.py:** Utilitiy functions for translating between cathegorical encoding, FEN notatin and image generation from the mentioned
+- **data_generator.py:** ChessBoardGenerator class. For a given set of training assets, such as backgrounds, different board styles and different pieces styles, randomly generates images of chess boards with the corresponding label. Public method tfGenerator() returns a tensorflow dataset generator. Example of required data structure: /cmds/generator_assets_example
+
+### assets
+Default assets for reconstruting screenshot image.
+
+### app
+- **app_buttons.py** implementation of the helper app's buttons, such as player to move, board orientation etc.
+- **app_main.py:** App class source code
+
+### engine interface
+Since the python stockfish api only allows to return the best moves, some minor modifications are needed to be able to see whole lines. interface.py then just implement basic functions neede for the app.
+
+### models
+Include implementation of custom metrics (such as BoardAccuracy), model base class and the neural network architecture itslef.
+
+### cmds
+Command line scripts installed together with the package
+
+
+
+
+
+
+
+
