@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import os
 import sys
 
@@ -13,6 +12,8 @@ from chessrec.models.board_detector_v0 import BoardDetector
 from chessrec.models.position_recognizer_v0 import PositionRecognizer
 import chessrec.fen_transcode as fen_transcode
 import chessrec.app.app_buttons as butt
+
+# TODO: add annotations everywhere
 
 class ChessEvalApp():
     def __init__(self, master: tk.Tk, detector: BoardDetector, recognizer: PositionRecognizer, args: argparse.Namespace):
@@ -58,8 +59,20 @@ class ChessEvalApp():
         
         # Placing of the buttons and images in the app window
         self._initialize_grid()
-    
 
+    @property
+    def img_sizes(self):
+        # Definition of the relative sizes of the images
+        H = self.master.winfo_height()//3
+        W = self.master.winfo_width()//2
+        return (W, H)
+
+    @property
+    def text_window_width(self):
+        # Definition of the relative size of the text window
+        W = self.master.winfo_width()//9
+        return W
+    
     def _initialize_grid(self) -> None:
         self.eval_button.grid(row=0, column=0)
         self.select_button.select_button.grid(row=0, column=1)
@@ -75,20 +88,6 @@ class ChessEvalApp():
         self.decoded_pos_label.grid(row=5, column=1, sticky="nsew")
         self.message_text.grid(row=6, column=0, columnspan=2)
 
-    @property
-    def img_sizes(self):
-        # Definition of the relative sizes of the images
-        H = self.master.winfo_height()//3
-        W = self.master.winfo_width()//2
-        return (W, H)
-
-    @property
-    def text_window_width(self):
-        # Definition of the relative size of the text window
-        W = self.master.winfo_width()//9
-        return W
-    
-
     def on_resize(self, event):
         # Resize the image. Note that the original image is not overwritten
         # to maintain the original quality of the image
@@ -102,7 +101,6 @@ class ChessEvalApp():
         self.captured_pos_label.config(image=self.captured_pos_tk)
         # Resize message window
         self.message_text.configure(width=self.text_window_width)
-
 
     def update_images(self, screenshot, decoded_pos):
         # Resize the screenshot and decoded position images and update the GUI labels
