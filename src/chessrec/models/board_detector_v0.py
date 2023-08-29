@@ -1,4 +1,5 @@
 import numpy as np 
+import tensorflow as tf
 from tensorflow.keras import layers
 from chessrec.models import DetectorBase
 
@@ -26,7 +27,7 @@ class BoardDetector(DetectorBase):
         
         # TODO: This is just a cheat to make self.summary() work properly.
         # Double check if it does not interfere with anything
-        input_layer = Input(shape=(256,256,1,))
+        input_layer = layers.Input(shape=(256,256,1,))
         output_layer = self.call(input_layer)
         super().__init__(
             inputs=input_layer,
