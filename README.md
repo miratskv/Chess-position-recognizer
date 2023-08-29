@@ -2,7 +2,7 @@
 A simple application designed for recognizing "online" chess positions (i.e., corresponding FEN notation) from a screenshot using a small neural network and predicting next best moves, utilizing Stockfish engine. The package includes: An application script, a script for generating training data and a script for training of the mentioned network.
 
 ### Disclaimer:
-The application primarily serves for analyzing live broadcasts and facilitating the easy import of games from videos into an analyzer etc. Secondary purpose is purely educational, as the ability to generate custom data enables easy comparison of the effectiveness of various neural network models, the influence of data augmentation, and similar aspects. Any misuse for cheating in one's own games is immoral and honestly quite stupid.
+The application primarily serves for analyzing live broadcasts and facilitating an easy import of games from videos into an analyzer etc. Secondary purpose is purely educational, as the ability to generate custom data enables easy comparison of the effectiveness of various neural network models, the influence of data augmentation, and similar aspects. Any misuse for cheating in one's own games is immoral and honestly quite stupid.
 
 
 ## Motivation:
