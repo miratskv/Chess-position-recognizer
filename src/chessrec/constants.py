@@ -4,6 +4,8 @@ import os
 File with some usefull constants and notations
 """
 
+###!!! If the stockfish engine is not installed 
+### globally, put here the path to the engine bin files !!!
 STOCKFISH_PATH = ""
 
 DEFAULT_ASSETS_FILE = os.path.join(os.path.dirname(__file__),"assets","default")
