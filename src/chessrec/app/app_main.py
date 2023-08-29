@@ -32,7 +32,6 @@ class ChessEvalApp():
         # tkinter master
         self.master = master
         self.master.title("Chess evaluation App")
-        self.master_W = self.master.winfo_width()
         self.master.bind("<Configure>", self.on_resize)
         self.message_text = tk.Text(self.master, width=self.text_window_width)
         self._text_insert_mode = '1.0'
