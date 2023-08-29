@@ -1,5 +1,6 @@
 from stockfish import StockfishException
 from .stockfish_with_lines import StockfishLines as Stockfish
+from chessrec.constants import STOCKFISH_PATH
 
 class EngineInterface():
     def __init__(self, elo, hash_mb, threads, depth):
@@ -15,7 +16,10 @@ class EngineInterface():
         )
 
     def reset(self, elo, depth, hash_mb, threads):
-        engine = Stockfish()
+        if STOCKFISH_PATH:
+            engine = Stockfish(path=STOCKFISH_PATH)
+        else:
+            engine = Stockfish()
         engine.set_depth(depth)
         engine.set_elo_rating(elo)
         engine.update_engine_parameters({"Hash": hash_mb, "Threads": threads})
