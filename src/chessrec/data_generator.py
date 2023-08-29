@@ -15,6 +15,10 @@ class ChessBoardGenerator():
     BACKGROUND_H: int = 576
     BACKGROUND_W: int = 1024
     COL_CHANNELS: int = 3
+    
+    EZY_OFFSET: float = 0
+    HARD_OFFSET: float = 1/16
+
     IMAGE_SUPP_FORMATS = [".jpg", ".png"]
     def __init__(self, 
               boards_imgs_path: str = '', 
@@ -147,8 +151,8 @@ class ChessBoardGenerator():
         if self._only_boards:
             # Some boards are generated with large offset, some with smaller/none.
             hard_or_ezy_switch = np.random.randint(0, 2)
-            ezy_off = 0
-            hard_off = 1/16
+            ezy_off = self.EZY_OFFSET
+            hard_off = self.HARD_OFFSET
 
             if hard_or_ezy_switch == 0:
                 y_off = random.randint(0, round(ezy_off*board.shape[0]))
