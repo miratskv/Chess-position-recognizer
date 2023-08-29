@@ -37,18 +37,16 @@ class RecognizerBase(tf.keras.Model):
         return predicitons
 
 
-### TODO: This is basically just a playground at this point
+### TODO: This is basically just a playground at this point and can be fully ignored
 class DetectorBase(tf.keras.Model):
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
-
 
     def save_model(self, save_path):
         self.save_weights(save_path, save_format="h5")
 
     def load_model(self, load_path):
         self.load_weights(load_path)
-
 
     def add_rel_coordinates(self, coordinates_outer, coordinates_inner):
         y_ = coordinates_outer[...,0] + (coordinates_outer[...,2] - coordinates_outer[...,0])*coordinates_inner[..., 0]
@@ -58,7 +56,6 @@ class DetectorBase(tf.keras.Model):
         x_2 = x_ + (coordinates_outer[...,3] - coordinates_outer[...,1])*(coordinates_inner[...,3] - coordinates_inner[...,1])
 
         return tf.stack([y_, x_, y_2, x_2], axis=-1)
-
 
     def crop_with_tolerance(self, images, y_tol, x_tol, H, W):
         boxes = self(images)

@@ -23,7 +23,6 @@ class IoU(tf.keras.metrics.Metric):
 
     def update_state(self, y_true, y_pred, sample_weight=None):
         # Convert the bounding boxes from [y,x,h,w] format to [xmin, ymin, xmax, ymax] format
-
         box_pred = bbox_ts_to_yxyx(y_pred)
         box_true = bbox_ts_to_yxyx(y_true)
 
