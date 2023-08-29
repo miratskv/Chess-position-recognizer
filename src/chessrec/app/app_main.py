@@ -7,7 +7,6 @@ from PIL import Image, ImageTk, ImageGrab
 import numpy as np 
 import argparse
 
-from chessrec.engine_interface.stockfish.interface import EngineInterface
 from chessrec.models.board_detector_v0 import BoardDetector
 from chessrec.models.position_recognizer_v0 import PositionRecognizer
 import chessrec.fen_transcode as fen_transcode
@@ -17,13 +16,6 @@ import chessrec.app.app_buttons as butt
 
 class ChessEvalApp():
     def __init__(self, master: tk.Tk, detector: BoardDetector, recognizer: PositionRecognizer, args: argparse.Namespace):
-        # Interface used to suggest best lines for a given FEN
-        self.engine_interface = EngineInterface(
-            args.stockfish_elo,
-            args.stockfish_hash,
-            args.stockfish_threads,
-            args.stockfish_depth,
-        )
         # ML model used to recognize pieces on the board and their position
         self.recognizer = recognizer
         # Area on the display to screenshot chess board from
@@ -48,6 +40,11 @@ class ChessEvalApp():
         self.player_on_move_buttons = butt.PlayerOnMoveButtons(self)
         self.castling_buttons = butt.CastlingButtons(self)
 
+
+        # Interface used to suggest best lines for a given FEN
+        self.engine_interface = None
+        self.try_init_engine(args)
+
         # Images of the screenshot and the reconstructed board
         self.captured_pos_IM = Image.new('RGB', self.img_sizes)
         self.captured_pos_tk = ImageTk.PhotoImage(self.captured_pos_IM)
@@ -71,6 +68,21 @@ class ChessEvalApp():
         # Definition of the relative size of the text window
         W = self.master.winfo_width()//9
         return W
+
+    def try_init_engine(self, args):
+        try:
+            from chessrec.engine_interface.stockfish.interface import EngineInterface
+            self.engine_interface = EngineInterface(
+                args.stockfish_elo,
+                args.stockfish_hash,
+                args.stockfish_threads,
+                args.stockfish_depth,
+            )
+        except Exception as e:
+            self.message_text.insert(
+                self._text_insert_mode, f'Could not load the engine: {e}. \n The evaluate button will return only the FEN of the position. Please make sure the engine is installed and that the constats.py contain the right path to it. If the engine is installed globally, path should remain to be set to empty string')
+
+
     
     def _initialize_grid(self) -> None:
         self.eval_button.grid(row=0, column=0)
