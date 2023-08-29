@@ -79,8 +79,17 @@ class ChessEvalApp():
                 args.stockfish_depth,
             )
         except Exception as e:
+            message = (
+                        f'Could not load the engine: {e}. \n' + 
+                        'The Evaluate button will return only the recognized FEN notation. ' + 
+                        'To show the position evaluation, install and set the stockfish properly. ' + 
+                        'Make sure, the stockfish API is installed (pip install stockfish). ' + 
+                        'Then install the stockfish engine on your machine. ' + 
+                        'If the engine is not installed globally, set the STOCKFISH_PATH variable in the const.py to the path to engine bin files. ' +
+                        'Otherwise, leave the variable empty'
+            )
             self.message_text.insert(
-                self._text_insert_mode, f'Could not load the engine: {e}. \n The evaluate button will return only the FEN of the position. Please make sure the engine is installed and that the constats.py contain the right path to it. If the engine is installed globally, path should remain to be set to empty string')
+                self._text_insert_mode, message)
 
 
     
