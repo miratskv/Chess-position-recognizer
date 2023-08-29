@@ -85,7 +85,7 @@ class ChessEvalApp():
                         'To show the position evaluation, install and set the stockfish properly. ' + 
                         'Make sure, the stockfish API is installed (pip install stockfish). ' + 
                         'Then install the stockfish engine on your machine. ' + 
-                        'If the engine is not installed globally, set the STOCKFISH_PATH variable in the const.py to the path to engine bin files. ' +
+                        'If the engine is not installed globally, set the STOCKFISH_PATH variable in the chessrec.constants.py to the path to engine bin files. ' +
                         'Otherwise, leave the variable empty'
             )
             self.message_text.insert(
@@ -167,9 +167,8 @@ class ChessEvalApp():
             )
             self.update_images(screenshot, decoded_pos)
             FEN = self.get_FEN(encoded_pos)
-            self.message_text.insert(
-                self._text_insert_mode, f'______________\n')
-            self.message_text.insert(
-                self._text_insert_mode, f'FEN: {FEN}\n')
-            engine_report = self.engine_interface.stockfish_evaluation(FEN)
-            self.message_text.insert(self._text_insert_mode, engine_report)
+            self.message_text.insert(self._text_insert_mode, f'______________\n')
+            self.message_text.insert(self._text_insert_mode, f'FEN: {FEN}\n')
+            if self.engine_interface:
+                engine_report = self.engine_interface.stockfish_evaluation(FEN)
+                self.message_text.insert(self._text_insert_mode, engine_report)
