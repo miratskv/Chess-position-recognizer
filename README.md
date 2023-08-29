@@ -19,7 +19,7 @@ The purpose of this application is thus quite evident: Take a screenshot -> disp
 ## Requirements:
 
 - **Operating System:** Tested only on a Linux machine (Ubuntu 23.04)
-- **Chess engine:** Stockfish + python stockfish api (see [Stockfish on PyPI](https://pypi.org/project/stockfish/))
+- **Chess engine (Optional):** Stockfish + python stockfish api (see [Stockfish on PyPI](https://pypi.org/project/stockfish/)). If the engine is not installed, app will show only the predicted FEN without the evaluation and best lines.
 - **GUI framework:** Tkinter (see [How to Install Tkinter on Linux](https://www.geeksforgeeks.org/how-to-install-tkinter-on-linux/))
 - **Python >= 3.11:**
   - tensorflow >= 2.12.0
