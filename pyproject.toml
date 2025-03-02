@@ -1,3 +1,65 @@
+[tool.poetry]
+name = "chessrec"
+version = "0.1.0"
+description = "Training and inference code for a DL model converting online chessboard image to corresponding FEN notation"
+readme = "README.md"
+
+authors = [
+    "buranone@seznam.cz"
+]
+
+packages = [
+    { include = "src/chessrec" },
+]
+
+
 [build-system]
-requires = ["setuptools>=42"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+
+
+[tool.poetry.group.codecheck]
+optional = true
+
+[tool.poetry.group.codecheck.dependencies]
+poethepoet = "^0.29.0"
+black = "^24.10.0"
+ruff = "^0.6.9"
+pylint = "^3.3.1"
+
+
+[tool.poetry.group.unittest]
+optional = true
+
+[tool.poetry.group.unittest.dependencies]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+select = ["E", "F"]
+ignore = []
+
+line-length = 88
+
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 88
+
+[tool.poe.tasks]
+black = "black src/chessrec"
+black-check = "black --check src/chessrec"
+ruff = "ruff src/chessrec"
+pylint = "pylint src/chessrec --max-line-length 88"
+isort = "isort src/chessrec"
+check = ["black", "ruff", "pylint", "isort"]
+build = "poetry build"
+create-databricks-profile = "databricks configure --profile pillow --configure-cluster"
